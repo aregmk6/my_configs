@@ -2,7 +2,7 @@ print("sourced init.lua, advent of code - tutorial")
 
 require("config.lazy")
 
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 2
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -47,13 +47,19 @@ vim.o.scrolloff = 5
 vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
+-- Yank to clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
+vim.keymap.set("n", "<leader>wa", "<cmd>wa<CR>")
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- source lines in buffer
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<space>x", ":.lua<CR>")
-vim.keymap.set("v", "<space>x", ":lua<CR>")
+vim.keymap.set("n", "<space>x", "<cmd>.lua<CR>")
+vim.keymap.set("v", "<space>x", "<cmd>lua<CR>")
 
 -- travers QuickFix manu
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")

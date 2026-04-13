@@ -1,5 +1,21 @@
 return {
   {
+    "mason-org/mason.nvim",
+    opts = {}
+  },
+
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {},
+    },
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+  },
+
+  {
     "neovim/nvim-lspconfig",
     dependencies = {
       {
@@ -16,16 +32,25 @@ return {
     },
     config = function()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-      vim.lsp.config('lua_ls', { capabilities = capabilities })
+
+      vim.lsp.config('lua_ls', { capabilities = capabilities, })
       vim.lsp.config('clangd', { capabilities = capabilities })
+      vim.lsp.config('pyright', { capabilities = capabilities })
+      vim.lsp.config('ts_ls', { capabilities = capabilities })
+
+      -- I have these installed locally on my system
       vim.lsp.enable('lua_ls')
       vim.lsp.enable('clangd')
       vim.lsp.enable('pyright')
+      vim.lsp.enable('ts_ls')
+      -- These are from mason
 
       vim.keymap.set('n', 'gK', function()
         local new_config = not vim.diagnostic.config().virtual_lines
         vim.diagnostic.config({ virtual_lines = new_config })
       end, { desc = 'Toggle diagnostic virtual_lines' })
+
+      vim.keymap.set('v', '<leader>lf', vim.lsp.buf.format, { desc = 'Toggle diagnostic virtual_lines' })
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('my.lsp', {}),
