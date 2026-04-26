@@ -1,10 +1,12 @@
-print("sourced init.lua, advent of code - tutorial")
+print("Hello Areg!")
 
 require("config.lazy")
 
 vim.opt.shiftwidth = 2
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+vim.opt.cmdheight = 0
 
 -- Enable break indent
 vim.o.breakindent = true
