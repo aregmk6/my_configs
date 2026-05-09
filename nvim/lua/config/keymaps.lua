@@ -53,7 +53,36 @@ vim.keymap.set("n", "<space>tm", function()
   vim.fn.chansend(job_id, { "make\r" })
 end)
 
+-- diagnostics
+local toggle = false
+vim.keymap.set("n", "<space><S-d>", function()
+  toggle = not toggle
+  vim.diagnostic.enable(toggle)
+end
+, { desc = "toggle diagnostics" })
+
 -- buffers
 vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "next buffer" })
 vim.keymap.set("n", "<S-tab>", "<cmd>bprev<cr>", { desc = "prev buffer" })
 vim.keymap.set("n", "<space>bd", "<cmd>bdelete<cr>", { desc = "close buffer" })
+vim.keymap.set("n", "<space>bhd", function()
+  function buffer_filter(buf)
+    if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_get_option(buf, 'buflisted') then
+      return false
+    end
+    return true
+  end
+
+  local buffers = vim.tbl_filter(buffer_filter, vim.api.nvim_list_bufs())
+  local non_hidden_buffer = {}
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    non_hidden_buffer[vim.api.nvim_win_get_buf(win)] = true
+  end
+
+  for _, buffer in ipairs(buffers) do
+    if non_hidden_buffer[buffer] == nil then
+      vim.cmd("bdelete" .. ' ' .. buffer)
+    end
+  end
+end
+, { desc = "close buffer" })

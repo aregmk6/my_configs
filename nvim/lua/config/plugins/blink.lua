@@ -28,6 +28,8 @@ return {
       -- See :h blink-cmp-config-keymap for defining your own keymap
       keymap = { preset = 'default' },
 
+
+
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
@@ -37,7 +39,13 @@ return {
       signature = { enabled = true },
 
       -- (Default) Only show the documentation popup when manually triggered
-      completion = { documentation = { auto_show = false } },
+      completion = {
+        documentation = { auto_show = false },
+        menu = {
+          -- Don't automatically show the completion menu
+          auto_show = false,
+        },
+      },
 
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
