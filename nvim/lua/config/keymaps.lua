@@ -1,3 +1,6 @@
+-- cd to current pwd
+vim.keymap.set("n", "<leader>cd", "<cmd>cd %:h<CR>", { desc = "set current directory as cwd" })
+
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>", { desc = "Toggle Wrap", silent = true })
 
@@ -5,18 +8,26 @@ vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>", { desc = "Toggle Wrap", 
 vim.keymap.set("n", "z0", "1z=", { desc = "Fix word under cursor" })
 
 -- replace under cursor
-vim.keymap.set("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "change occors of word under cursor accros whole file" })
+vim.keymap.set("n", "<leader>sl", [[:.s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = "change occors of word under cursor in current line" })
+vim.keymap.set("n", "<leader>qrf", [[:%s//g<left><left>]],
+  { desc = "quary replace in accros file" })
+vim.keymap.set("n", "<leader>qrl", [[:.s//g<left><left>]],
+  { desc = "quary replace in current line" })
+vim.keymap.set("v", "<leader>qr", [[:s//g<left><left>]],
+  { desc = "quary replace visual selection" })
 
 -- Yank to clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to system clipboard" })
 
 -- quick save
-vim.keymap.set("n", "<leader>w", "<cmd>w<CR>")
-vim.keymap.set("n", "<leader>wa", "<cmd>wa<CR>")
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "save changes on current buffer" })
+vim.keymap.set("n", "<leader>wa", "<cmd>wa<CR>", { desc = "save changes on all open buffers" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear highlights" })
 
 -- source lines in buffer
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")

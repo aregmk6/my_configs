@@ -7,6 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.cmdheight = 1
 vim.opt.wrap = false
 vim.opt.expandtab = true
+vim.opt.guicursor = ""
 
 -- Enable break indent
 vim.opt.breakindent = true
