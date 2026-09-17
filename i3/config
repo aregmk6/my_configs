@@ -206,19 +206,27 @@ bindsym $mod+shift+a exec rofi -show drun
 bindsym $mod+shift+f exec thunar
 #chrome
 bindsym $mod+c exec google-chrome-stable
+#gemini
+bindsym $mod+g exec google-chrome-stable gemini.google.com
+#telegram
+bindsym $mod+t exec google-chrome-stable web.telegram.org/a/
 
 # Screenshots
-bindsym Ctrl+Shift+Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
-bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
-bindsym Ctrl+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+bindsym Ctrl+Shift+Print exec --no-startup-id maim "/home/$USER/Pictures/screenshots/$(date).png"
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/screenshots/$(date).png"
+bindsym Ctrl+Print exec --no-startup-id maim --select "/home/$USER/Pictures/screenshots/$(date).png"
 
 ## Clipboard Screenshots
 bindsym Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-## open app where?
 
-# assign [class="Spotify"] $ws10
+## connect to airpods
+bindsym $mod+Ctrl+Shift+a exec --no-startup-id bash -ci "btair"
+bindsym $mod+Ctrl+Shift+d exec --no-startup-id bash -ci "btdis"
+
+## zoom in (boomer)
+bindsym $mod+Ctrl+z exec --no-startup-id "~/bin/boomer"
 
 # exec at startup
 exec_always --no-startup-id xinput set-prop "ELAN1201:00 04F3:3098 Touchpad" "libinput Tapping Enabled" 1
@@ -227,8 +235,7 @@ exec_always --no-startup-id xinput set-prop "ELAN1201:00 04F3:3098 Touchpad" "li
 exec_always --no-startup-id setxkbmap -option ctrl:nocaps
 
 # wallpaper
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper2.jpg
-
+exec_always --no-startup-id feh --bg-scale /home/aregmk/Pictures/wallpapers/mountain-galaxy.jpg
 
 
 
@@ -254,26 +261,6 @@ set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
-
-# window colors
-#                       border              background         text                 indicator
-# client.focused          $bg-color           $bg-color          $text-color          #00ff00
-# client.unfocused        $inactive-bg-color $inactive-bg-color  $inactive-text-color #00ff00
-# client.focused_inactive $inactive-bg-color $inactive-bg-color  $inactive-text-color #00ff00
-# client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
-
-# bar
-# bar {
-#         status_command i3status
-# 	colors {
-# 		background $bg-color
-# 	    	separator #757575
-# 		#                  border             background         text
-# 		focused_workspace  $bg-color          $bg-color          $text-color
-# 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-# 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-# 	}
-# }
 
 # -----  my stuff end  -----
 

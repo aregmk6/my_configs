@@ -76,7 +76,7 @@ end
 vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "next buffer" })
 vim.keymap.set("n", "<S-tab>", "<cmd>bprev<cr>", { desc = "prev buffer" })
 vim.keymap.set("n", "<space>bd", "<cmd>bdelete<cr>", { desc = "close buffer" })
-vim.keymap.set("n", "<space>bhd", function()
+vim.keymap.set("n", "<space>bad", function()
   function buffer_filter(buf)
     if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_get_option(buf, 'buflisted') then
       return false
@@ -97,3 +97,15 @@ vim.keymap.set("n", "<space>bhd", function()
   end
 end
 , { desc = "close buffer" })
+
+-- show messages as a buffer:
+
+vim.keymap.set("n", "<leader>mm", function()
+  local m = vim.fn.execute('messages')
+  vim.cmd('new')
+  vim.bo.buftype = 'nofile'
+  vim.bo.bufhidden = 'wipe'
+  vim.bo.swapfile = false
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(m, '\n'))
+end
+, { desc = "show messages as a buffer" })

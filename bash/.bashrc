@@ -14,9 +14,31 @@ PS1='[\u@\h \W]\$ '
 ## function overides
 find2() { command find "$@" 2>/dev/null; }
 
+startdrive() {
+    mkdir -p /home/aregmk/onedrive-local
+    command rclone mount --daemon --vfs-cache-mode full onedrive: /home/aregmk/onedrive-local
+}
+
+stopdrive() {
+    sudo umount /home/aregmk/onedrive-local
+}
+
+startsase() {
+    sudo systemctl start perimeter81helper.service
+    sleep 1
+    perimeter81 &
+}
+
+stopsase() {
+    systemctl stop perimeter81helper.service
+}
+
 ## aliases
 alias nv='nvim .'
 alias preventsleep='systemd-inhibit --why="Manual sleep inhibit until turned off" --what=sleep sleep infinity'
+
+## ssh
+alias sshcougar='ssh -L 5902:localhost:5902 areg@gali_cougar'
 
 ## btctl aliases
 alias btctl='bluetoothctl'
