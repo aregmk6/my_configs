@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cp -r "/home/aregmk/.config/nvim" "/home/aregmk/my-stuff/saved-configs/"
+cp -r "/home/aregmk/.config/yazi" "/home/aregmk/my-stuff/saved-configs/"
+cp -r "/home/aregmk/.config/i3" "/home/aregmk/my-stuff/saved-configs/"
+cp "/home/aregmk/.bashrc" "/home/aregmk/my-stuff/saved-configs/bash/.bashrc"
+
