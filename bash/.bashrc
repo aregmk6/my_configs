@@ -7,7 +7,7 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
+PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w\[\e[0m\] \[\e[1;33m\]\$\[\e[0m\] '
 
 # ------------------ my additions begin ------------------ 
 
@@ -34,7 +34,7 @@ stopsase() {
 }
 
 ## aliases
-alias t='tmux'
+alias tkill='tmux kill-server'
 alias nv='nvim .'
 alias preventsleep='systemd-inhibit --why="Manual sleep inhibit until turned off" --what=sleep sleep infinity'
 
