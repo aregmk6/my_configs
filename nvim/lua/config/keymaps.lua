@@ -59,11 +59,6 @@ end)
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 vim.keymap.set("t", "<C-w>q", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
--- open terminal and run 'make' command
-vim.keymap.set("n", "<space>tm", function()
-  vim.fn.chansend(job_id, { "make\r" })
-end)
-
 -- diagnostics
 local toggle = false
 vim.keymap.set("n", "<space><S-d>", function()
@@ -96,7 +91,7 @@ vim.keymap.set("n", "<space>bad", function()
     end
   end
 end
-, { desc = "close buffer" })
+, { desc = "close all other buffers except for the one that is open" })
 
 -- show messages as a buffer:
 
@@ -109,3 +104,6 @@ vim.keymap.set("n", "<leader>mm", function()
   vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(m, '\n'))
 end
 , { desc = "show messages as a buffer" })
+
+-- tree toggle
+vim.keymap.set("n", "<leader>et", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })

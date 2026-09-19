@@ -1,7 +1,8 @@
 #!/bin/bash
 
-cp -r "/home/aregmk/.config/nvim" "/home/aregmk/my-stuff/saved-configs/"
-cp -r "/home/aregmk/.config/yazi" "/home/aregmk/my-stuff/saved-configs/"
-cp -r "/home/aregmk/.config/i3" "/home/aregmk/my-stuff/saved-configs/"
-cp "/home/aregmk/.bashrc" "/home/aregmk/my-stuff/saved-configs/bash/.bashrc"
+cp -r "/home/aregmk/.config/tmux" "/home/aregmk/MyStuff/saved-configs/"
+cp -r "/home/aregmk/.config/nvim" "/home/aregmk/MyStuff/saved-configs/"
+cp -r "/home/aregmk/.config/yazi" "/home/aregmk/MyStuff/saved-configs/"
+cp -r "/home/aregmk/.config/i3" "/home/aregmk/MyStuff/saved-configs/"
+cp "/home/aregmk/.bashrc" "/home/aregmk/MyStuff/saved-configs/bash/.bashrc"
 

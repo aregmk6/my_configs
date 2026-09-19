@@ -49,11 +49,6 @@ alias btdis='btctl disconnect'
 # PATH
 export PATH="$HOME/bin:$PATH"
 
-# zoxide
-eval "$(zoxide init bash)"
-
-# fzf
-eval "$(fzf --bash)"
 
 # yazi
 
@@ -73,3 +68,10 @@ export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
 
 # Created by `pipx` on 2026-07-06 11:56:01
 export PATH="$PATH:/home/aregmk/.local/bin"
+
+# ------------------  things that have to be at the bottom  ------------------ 
+# zoxide
+eval "$(zoxide init bash)"
+
+# fzf
+eval "$(fzf --bash)"
