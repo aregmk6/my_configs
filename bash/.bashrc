@@ -34,6 +34,7 @@ stopsase() {
 }
 
 ## aliases
+alias t='tmux'
 alias nv='nvim .'
 alias preventsleep='systemd-inhibit --why="Manual sleep inhibit until turned off" --what=sleep sleep infinity'
 

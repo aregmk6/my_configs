@@ -208,8 +208,8 @@ bindsym $mod+shift+f exec thunar
 bindsym $mod+c exec google-chrome-stable
 #gemini
 bindsym $mod+g exec google-chrome-stable gemini.google.com
-#telegram
-bindsym $mod+t exec google-chrome-stable web.telegram.org/a/
+#tmux
+bindsym $mod+t exec --no-startup-id $term -e "tmux"
 
 # Screenshots
 bindsym Ctrl+Shift+Print exec --no-startup-id maim "/home/$USER/Pictures/screenshots/$(date).png"
