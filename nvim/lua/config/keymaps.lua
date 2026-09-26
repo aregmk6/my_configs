@@ -70,8 +70,8 @@ end
 -- buffers
 vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "next buffer" })
 vim.keymap.set("n", "<S-tab>", "<cmd>bprev<cr>", { desc = "prev buffer" })
-vim.keymap.set("n", "<space>bd", "<cmd>bdelete<cr>", { desc = "close buffer" })
-vim.keymap.set("n", "<space>bad", function()
+vim.keymap.set("n", "<space>bds", "<cmd>bdelete<cr>", { desc = "close buffer" })
+vim.keymap.set("n", "<space>bda", function()
   function buffer_filter(buf)
     if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_get_option(buf, 'buflisted') then
       return false

@@ -193,7 +193,7 @@ bar {
 
 
 # set terminal
-set $term kitty
+set $term alacritty
 
 ## key bindings
 # lock screen

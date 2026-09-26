@@ -7,12 +7,13 @@
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w\[\e[0m\] \[\e[1;33m\]\$\[\e[0m\] '
+PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w\[\e[0m\] \[\e[1;33m\]\n\$\[\e[0m\] '
 
 # ------------------ my additions begin ------------------ 
 
 ## function overides
-find2() { command find "$@" 2>/dev/null; }
+find() { command find "$@" 2>/dev/null; }
+find2() { command find "$@"; }
 
 startdrive() {
     mkdir -p /home/aregmk/onedrive-local
@@ -35,6 +36,7 @@ stopsase() {
 
 ## aliases
 alias tkill='tmux kill-server'
+alias t='tmux'
 alias nv='nvim .'
 alias preventsleep='systemd-inhibit --why="Manual sleep inhibit until turned off" --what=sleep sleep infinity'
 
@@ -47,12 +49,7 @@ alias btair='btctl connect C0:B2:2F:82:53:B4'
 alias btxm='btctl connect 88:C9:E8:07:59:ED'
 alias btdis='btctl disconnect'
 
-# PATH
-export PATH="$HOME/bin:$PATH"
-
-
 # yazi
-
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	command yazi "$@" --cwd-file="$tmp"
@@ -61,14 +58,15 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-export TERMINAL="kitty"
+export TERMINAL="alacritty"
 export EDITOR="nvim"
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
+
 
 # ------------------  my additions end ------------------ 
 
 # Created by `pipx` on 2026-07-06 11:56:01
-export PATH="$PATH:/home/aregmk/.local/bin"
+# export PATH="$PATH:/home/aregmk/.local/bin"
 
 # ------------------  things that have to be at the bottom  ------------------ 
 # zoxide

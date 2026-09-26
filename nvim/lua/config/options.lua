@@ -1,8 +1,15 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-
-vim.diagnostic.enable(false)
+vim.diagnostic.enable(true)
+vim.api.nvim_create_user_command('Diagstat', function()
+  if vim.diagnostic.is_enabled() then
+    print("diagnostics are enabled")
+  else
+    print("diagnostics are disabled")
+  end
+end, {}
+)
 
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
