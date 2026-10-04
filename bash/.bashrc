@@ -31,7 +31,7 @@ startsase() {
 }
 
 stopsase() {
-    systemctl stop perimeter81helper.service
+    sudo systemctl stop perimeter81helper.service &
 }
 
 ## aliases

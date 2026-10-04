@@ -1,5 +1,15 @@
 -- cd to current pwd
-vim.keymap.set("n", "<leader>cd", "<cmd>cd %:h<CR>", { desc = "set current directory as cwd" })
+-- vim.keymap.set("n", "<leader>cd", "<cmd>cd %:h<CR>", { desc = "set current directory as cwd" })
+vim.keymap.set("n", "<leader>cd", function()
+  local oil_prefix = "oil://"
+  local path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
+  if string.find(path, oil_prefix, 1, true) then
+    path = string.sub(path, #oil_prefix + 1)
+  end
+  print("Switched to: " .. path)
+  vim.cmd("cd " .. path)
+end
+, { desc = "set current directory as cwd" })
 
 -- Toggle line wrapping
 vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>", { desc = "Toggle Wrap", silent = true })
@@ -37,6 +47,7 @@ vim.keymap.set("v", "<space>x", "<cmd>lua<CR>")
 -- travers QuickFix manu
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
+vim.keymap.set("n", "<M-q>", "<cmd>cclose<CR>")
 
 -- open parent directory with oil
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
@@ -72,14 +83,21 @@ vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "next buffer" })
 vim.keymap.set("n", "<S-tab>", "<cmd>bprev<cr>", { desc = "prev buffer" })
 vim.keymap.set("n", "<space>bds", "<cmd>bdelete<cr>", { desc = "close buffer" })
 vim.keymap.set("n", "<space>bda", function()
-  function buffer_filter(buf)
-    if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_get_option(buf, 'buflisted') then
-      return false
+  -- function buffer_filter(buf)
+  --   if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_get_option(buf, 'buflisted') then
+  --     return false
+  --   end
+  --   return true
+  -- end
+
+  function Buffer_filter(buf)
+    if vim.api.nvim_buf_is_loaded(buf) then
+      return true
     end
-    return true
+    return false
   end
 
-  local buffers = vim.tbl_filter(buffer_filter, vim.api.nvim_list_bufs())
+  local buffers = vim.tbl_filter(Buffer_filter, vim.api.nvim_list_bufs())
   local non_hidden_buffer = {}
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     non_hidden_buffer[vim.api.nvim_win_get_buf(win)] = true
@@ -87,7 +105,8 @@ vim.keymap.set("n", "<space>bda", function()
 
   for _, buffer in ipairs(buffers) do
     if non_hidden_buffer[buffer] == nil then
-      vim.cmd("bdelete" .. ' ' .. buffer)
+      -- vim.cmd("bdelete" .. ' ' .. buffer)
+      vim.cmd({ cmd = 'bdelete', args = { buffer } })
     end
   end
 end

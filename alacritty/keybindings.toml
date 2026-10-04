@@ -10,20 +10,20 @@ mods = "Control"
 
 [[keyboard.bindings]]
 action = "ScrollLineUp"
-key = "K"
+key = "J"
 mods = "Control"
 
 [[keyboard.bindings]]
 action = "ScrollLineDown"
-key = "J"
+key = "H"
 mods = "Control"
 
 [[keyboard.bindings]]
 action = "ScrollHalfPageUp"
-key = "K"
+key = "J"
 mods = "Control|Shift"
 
 [[keyboard.bindings]]
 action = "ScrollHalfPageDown"
-key = "J"
+key = "H"
 mods = "Control|Shift"
