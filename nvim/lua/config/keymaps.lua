@@ -1,5 +1,29 @@
+-- rtl
+local flag1 = false
+vim.keymap.set({ 'n', 'i', 'v' }, '<F2>', function()
+  if (not flag1) then
+    vim.opt.rightleft = true
+    vim.opt.keymap = "hebrew"
+    flag1 = true
+  else
+    vim.opt.rightleft = false
+    vim.opt.keymap = ""
+    flag1 = false
+  end
+end, { desc = "Toggle RTL layout mode" })
+
+local flag2 = false
+vim.keymap.set({ 'n', 'i', 'v' }, '<F3>', function()
+  if (not flag2) then
+    vim.opt.rightleftcmd = "search"
+    flag2 = true
+  else
+    vim.opt.rightleftcmd = ""
+    flag2 = false
+  end
+end, { desc = "Toggle RTL cmd layout mode" })
+
 -- cd to current pwd
--- vim.keymap.set("n", "<leader>cd", "<cmd>cd %:h<CR>", { desc = "set current directory as cwd" })
 vim.keymap.set("n", "<leader>cd", function()
   local oil_prefix = "oil://"
   local path = vim.fs.dirname(vim.api.nvim_buf_get_name(0))
@@ -83,21 +107,21 @@ vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "next buffer" })
 vim.keymap.set("n", "<S-tab>", "<cmd>bprev<cr>", { desc = "prev buffer" })
 vim.keymap.set("n", "<space>bds", "<cmd>bdelete<cr>", { desc = "close buffer" })
 vim.keymap.set("n", "<space>bda", function()
-  -- function buffer_filter(buf)
-  --   if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_get_option(buf, 'buflisted') then
-  --     return false
-  --   end
-  --   return true
-  -- end
-
-  function Buffer_filter(buf)
-    if vim.api.nvim_buf_is_loaded(buf) then
-      return true
+  local function buffer_filter(buf)
+    if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_get_option(buf, 'buflisted') then
+      return false
     end
-    return false
+    return true
   end
 
-  local buffers = vim.tbl_filter(Buffer_filter, vim.api.nvim_list_bufs())
+  -- function Buffer_filter(buf)
+  --   if vim.api.nvim_buf_is_loaded(buf) then
+  --     return true
+  --   end
+  --   return false
+  -- end
+
+  local buffers = vim.tbl_filter(buffer_filter, vim.api.nvim_list_bufs())
   local non_hidden_buffer = {}
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     non_hidden_buffer[vim.api.nvim_win_get_buf(win)] = true

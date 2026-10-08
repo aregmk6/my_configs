@@ -11,6 +11,7 @@ vim.api.nvim_create_user_command('Diagstat', function()
 end, {}
 )
 
+vim.opt.textwidth = 130
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.number = true
