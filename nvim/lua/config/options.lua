@@ -20,6 +20,7 @@ vim.opt.cmdheight = 1
 vim.opt.wrap = false
 vim.opt.expandtab = true
 vim.opt.guicursor = ""
+vim.opt.virtualedit = "block"
 
 -- Enable break indent
 vim.opt.breakindent = true

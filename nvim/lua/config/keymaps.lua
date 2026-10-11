@@ -147,6 +147,3 @@ vim.keymap.set("n", "<leader>mm", function()
   vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(m, '\n'))
 end
 , { desc = "show messages as a buffer" })
-
--- tree toggle
-vim.keymap.set("n", "<leader>et", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle Nvim Tree" })
