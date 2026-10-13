@@ -34,14 +34,14 @@ stopsase() {
     sudo systemctl stop perimeter81helper.service &
 }
 
+## ssh
+alias sshcougar='ssh -L 5902:localhost:5902 areg@gali_cougar'
+
 ## aliases
 alias tkill='tmux kill-server'
 alias t='tmux'
 alias nv='nvim .'
 alias preventsleep='systemd-inhibit --why="Manual sleep inhibit until turned off" --what=sleep sleep infinity'
-
-## ssh
-alias sshcougar='ssh -L 5902:localhost:5902 areg@gali_cougar'
 
 ## btctl aliases
 alias btctl='bluetoothctl'

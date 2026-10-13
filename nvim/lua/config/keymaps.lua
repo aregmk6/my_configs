@@ -1,4 +1,4 @@
--- rtl
+-- rtlke
 local flag1 = false
 vim.keymap.set({ 'n', 'i', 'v' }, '<F2>', function()
   if (not flag1) then
@@ -59,6 +59,8 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to system clip
 -- quick save
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "save changes on current buffer" })
 vim.keymap.set("n", "<leader>wa", "<cmd>wa<CR>", { desc = "save changes on all open buffers" })
+vim.keymap.set("n", "<leader>nw", "<cmd>noa w<CR>", { desc = "save changes on all open buffers" })
+vim.keymap.set("n", "<leader>nwa", "<cmd>noa wa<CR>", { desc = "save changes on all open buffers" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear highlights" })
