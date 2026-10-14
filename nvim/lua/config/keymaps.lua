@@ -1,3 +1,11 @@
+-- Emacs movement for insert mode
+-- Deletion
+vim.keymap.set('i', '<M-b>', '<C-o>b', { desc = 'move forward one word' })
+vim.keymap.set('i', '<M-f>', '<C-o>w', { desc = 'move backward one word' })
+vim.keymap.set('i', '<C-d>', '<Delete>', { desc = 'Delete character under cursor' })
+vim.keymap.set('i', '<M-d>', '<C-o>dw', { desc = 'Delete word under cursor' })
+vim.keymap.set('i', '<C-k>', '<C-o>D', { desc = 'Kill text to end of line' })
+
 -- rtlke
 local flag1 = false
 vim.keymap.set({ 'n', 'i', 'v' }, '<F2>', function()
@@ -23,6 +31,9 @@ vim.keymap.set({ 'n', 'i', 'v' }, '<F3>', function()
   end
 end, { desc = "Toggle RTL cmd layout mode" })
 
+-- select what's highlighted
+vim.keymap.set("v", "/", [[y/<C-r>0<CR>]], { desc = "select what's highlighted" })
+
 -- cd to current pwd
 vim.keymap.set("n", "<leader>cd", function()
   local oil_prefix = "oil://"
@@ -44,12 +55,12 @@ vim.keymap.set("n", "z0", "1z=", { desc = "Fix word under cursor" })
 -- replace under cursor
 vim.keymap.set("n", "<leader>s", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = "change occors of word under cursor accros whole file" })
-vim.keymap.set("n", "<leader>sl", [[:.s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "change occors of word under cursor in current line" })
-vim.keymap.set("n", "<leader>qrf", [[:%s//g<left><left>]],
+vim.keymap.set("v", "<leader>s", [[y:s/<C-r>0/<C-r>0/gI<Left><Left><Left>]],
+  { desc = "change occors of word under cursor in visual selection" })
+-- vim.keymap.set("n", "<leader>sl", [[:.s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],
+--   { desc = "change occors of word under cursor in current line" })
+vim.keymap.set("n", "<leader>qr", [[:%s//g<left><left>]],
   { desc = "quary replace in accros file" })
-vim.keymap.set("n", "<leader>qrl", [[:.s//g<left><left>]],
-  { desc = "quary replace in current line" })
 vim.keymap.set("v", "<leader>qr", [[:s//g<left><left>]],
   { desc = "quary replace visual selection" })
 
@@ -57,18 +68,18 @@ vim.keymap.set("v", "<leader>qr", [[:s//g<left><left>]],
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to system clipboard" })
 
 -- quick save
-vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "save changes on current buffer" })
+vim.keymap.set("n", "<leader>ww", "<cmd>w<CR>", { desc = "save changes on current buffer" })
 vim.keymap.set("n", "<leader>wa", "<cmd>wa<CR>", { desc = "save changes on all open buffers" })
-vim.keymap.set("n", "<leader>nw", "<cmd>noa w<CR>", { desc = "save changes on all open buffers" })
-vim.keymap.set("n", "<leader>nwa", "<cmd>noa wa<CR>", { desc = "save changes on all open buffers" })
+vim.keymap.set("n", "<leader>nww", "<cmd>noa w<CR>", { desc = "no autocommand - save changes on all open buffers" })
+vim.keymap.set("n", "<leader>nwa", "<cmd>noa wa<CR>", { desc = "no autocommand - save changes on all open buffers" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear highlights" })
 
 -- source lines in buffer
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<space>x", "<cmd>.lua<CR>")
-vim.keymap.set("v", "<space>x", "<cmd>lua<CR>")
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "source current file in buffer"})
+vim.keymap.set("n", "<space>x", "<cmd>.lua<CR>", { desc = "run command under the cursor"})
+vim.keymap.set("v", "<space>x", "<cmd>lua<CR>", { desc = "run highlighted command" })
 
 -- travers QuickFix manu
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
@@ -78,23 +89,9 @@ vim.keymap.set("n", "<M-q>", "<cmd>cclose<CR>")
 -- open parent directory with oil
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<M-->", function()
-  vim.cmd("new")
+  vim.cmd("vnew")
   vim.cmd("Oil")
 end, { desc = "Open parent directory in new window" })
-
--- open terminal
-local job_id = 0
-vim.keymap.set("n", "<space>st", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
-  vim.cmd.wincmd("J")
-  vim.api.nvim_win_set_height(0, 15)
-  job_id = vim.bo.channel
-end)
-
--- go into normal mode in terminal
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-vim.keymap.set("t", "<C-w>q", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 -- diagnostics
 local toggle = false
@@ -107,21 +104,14 @@ end
 -- buffers
 vim.keymap.set("n", "<tab>", "<cmd>bnext<cr>", { desc = "next buffer" })
 vim.keymap.set("n", "<S-tab>", "<cmd>bprev<cr>", { desc = "prev buffer" })
-vim.keymap.set("n", "<space>bds", "<cmd>bdelete<cr>", { desc = "close buffer" })
-vim.keymap.set("n", "<space>bda", function()
+vim.keymap.set("n", "<space>bb", "<cmd>bdelete<cr>", { desc = "close buffer" })
+vim.keymap.set("n", "<space>bd", function()
   local function buffer_filter(buf)
     if not vim.api.nvim_buf_is_valid(buf) or not vim.api.nvim_buf_get_option(buf, 'buflisted') then
       return false
     end
     return true
   end
-
-  -- function Buffer_filter(buf)
-  --   if vim.api.nvim_buf_is_loaded(buf) then
-  --     return true
-  --   end
-  --   return false
-  -- end
 
   local buffers = vim.tbl_filter(buffer_filter, vim.api.nvim_list_bufs())
   local non_hidden_buffer = {}
@@ -131,7 +121,6 @@ vim.keymap.set("n", "<space>bda", function()
 
   for _, buffer in ipairs(buffers) do
     if non_hidden_buffer[buffer] == nil then
-      -- vim.cmd("bdelete" .. ' ' .. buffer)
       vim.cmd({ cmd = 'bdelete', args = { buffer } })
     end
   end

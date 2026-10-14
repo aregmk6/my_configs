@@ -13,7 +13,13 @@ PS1='\[\e[1;32m\]\u@\h \[\e[1;34m\]\w\[\e[0m\] \[\e[1;33m\]\n\$\[\e[0m\] '
 
 ## function overides
 find() { command find "$@" 2>/dev/null; }
-find2() { command find "$@"; }
+efind() { command find "$@"; }
+
+fd() { command fd "$@" 2>/dev/null; }
+efd() { command fd "$@"; }
+
+rg() { command rg "$@" 2>/dev/null; }
+erg() { command rg "$@"; }
 
 startdrive() {
     mkdir -p /home/aregmk/onedrive-local
@@ -62,6 +68,11 @@ export TERMINAL="alacritty"
 export EDITOR="nvim"
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
 
+# Maximum number of lines contained in the history file
+HISTFILESIZE=10000
+
+# Number of commands to remember in the current shell session
+HISTSIZE=10000
 
 # ------------------  my additions end ------------------ 
 
