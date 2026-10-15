@@ -21,6 +21,12 @@ efd() { command fd "$@"; }
 rg() { command rg "$@" 2>/dev/null; }
 erg() { command rg "$@"; }
 
+nvim() {
+    command nvim "$@";
+    cd $(cat ~/.cache/nvim/last_cwd);
+}
+
+## new function
 startdrive() {
     mkdir -p /home/aregmk/onedrive-local
     command rclone mount --daemon --vfs-cache-mode full onedrive: /home/aregmk/onedrive-local
@@ -48,6 +54,7 @@ alias tkill='tmux kill-server'
 alias t='tmux'
 alias nv='nvim .'
 alias preventsleep='systemd-inhibit --why="Manual sleep inhibit until turned off" --what=sleep sleep infinity'
+alias lisp='sbcl'
 
 ## btctl aliases
 alias btctl='bluetoothctl'
@@ -70,9 +77,10 @@ export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
 
 # Maximum number of lines contained in the history file
 HISTFILESIZE=10000
-
 # Number of commands to remember in the current shell session
 HISTSIZE=10000
+# turn off the annoying freeze of the terminal
+stty -ixon
 
 # ------------------  my additions end ------------------ 
 

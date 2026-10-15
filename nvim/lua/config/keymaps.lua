@@ -1,5 +1,11 @@
+-- Emacs movement for command mode
+vim.keymap.set('c', '<C-q>', '<C-f>', { desc = 'open command history' })
+vim.keymap.set('c', '<M-b>', '<S-Left>', { desc = 'move backward one word' })
+vim.keymap.set('c', '<M-f>', '<S-Right>', { desc = 'move forward one word' })
+vim.keymap.set('c', '<C-b>', '<Left>', { desc = 'move backward one character' })
+vim.keymap.set('c', '<C-f>', '<Right>', { desc = 'move forward one character' })
+
 -- Emacs movement for insert mode
--- Deletion
 vim.keymap.set('i', '<M-b>', '<C-o>b', { desc = 'move forward one word' })
 vim.keymap.set('i', '<M-f>', '<C-o>w', { desc = 'move backward one word' })
 vim.keymap.set('i', '<C-d>', '<Delete>', { desc = 'Delete character under cursor' })
