@@ -1,6 +1,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.tags:append("/home/aregmk/.cache/ctags/**/**/tags")
+vim.opt.tags:append("/home/aregmk/.cache/ctags/**/tags")
+
 vim.diagnostic.enable(true)
 vim.api.nvim_create_user_command('Diagstat', function()
   if vim.diagnostic.is_enabled() then

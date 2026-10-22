@@ -43,7 +43,7 @@ startsase() {
 }
 
 stopsase() {
-    sudo systemctl stop perimeter81helper.service &
+    sudo systemctl stop perimeter81helper.service
 }
 
 ## ssh
@@ -52,9 +52,10 @@ alias sshcougar='ssh -L 5902:localhost:5902 areg@gali_cougar'
 ## aliases
 alias tkill='tmux kill-server'
 alias t='tmux'
+alias vi='nvim'
 alias nv='nvim .'
 alias preventsleep='systemd-inhibit --why="Manual sleep inhibit until turned off" --what=sleep sleep infinity'
-alias lisp='sbcl'
+alias lisp='rlwrap sbcl'
 
 ## btctl aliases
 alias btctl='bluetoothctl'
@@ -93,3 +94,15 @@ eval "$(zoxide init bash)"
 
 # fzf
 eval "$(fzf --bash)"
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND='fd --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'
+
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}

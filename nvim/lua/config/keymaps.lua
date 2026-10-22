@@ -11,6 +11,8 @@ vim.keymap.set('i', '<M-f>', '<C-o>w', { desc = 'move backward one word' })
 vim.keymap.set('i', '<C-d>', '<Delete>', { desc = 'Delete character under cursor' })
 vim.keymap.set('i', '<M-d>', '<C-o>dw', { desc = 'Delete word under cursor' })
 vim.keymap.set('i', '<C-k>', '<C-o>D', { desc = 'Kill text to end of line' })
+vim.keymap.set('i', '<C-f>', '<C-o>l', { desc = 'Delete word under cursor' })
+vim.keymap.set('i', '<C-b>', '<C-o>h', { desc = 'Kill text to end of line' })
 
 -- rtlke
 local flag1 = false
@@ -74,9 +76,9 @@ vim.keymap.set("v", "<leader>qr", [[:s//g<left><left>]],
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "yank to system clipboard" })
 
 -- quick save
-vim.keymap.set("n", "<leader>ww", "<cmd>w<CR>", { desc = "save changes on current buffer" })
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "save changes on current buffer" })
 vim.keymap.set("n", "<leader>wa", "<cmd>wa<CR>", { desc = "save changes on all open buffers" })
-vim.keymap.set("n", "<leader>nww", "<cmd>noa w<CR>", { desc = "no autocommand - save changes on all open buffers" })
+vim.keymap.set("n", "<leader>nw", "<cmd>noa w<CR>", { desc = "no autocommand - save changes on all open buffers" })
 vim.keymap.set("n", "<leader>nwa", "<cmd>noa wa<CR>", { desc = "no autocommand - save changes on all open buffers" })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
@@ -84,7 +86,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear highlights" 
 
 -- source lines in buffer
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "source current file in buffer"})
-vim.keymap.set("n", "<space>x", "<cmd>.lua<CR>", { desc = "run command under the cursor"})
 vim.keymap.set("v", "<space>x", "<cmd>lua<CR>", { desc = "run highlighted command" })
 
 -- travers QuickFix manu
@@ -144,3 +145,12 @@ vim.keymap.set("n", "<leader>mm", function()
   vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(m, '\n'))
 end
 , { desc = "show messages as a buffer" })
+
+-- run built in terminal
+vim.keymap.set("n", "<space>x", function() 
+    vim.ui.input({ prompt = "Terminal Command: "}, function(input) 
+        if input and input ~= "" then
+            vim.cmd('botright split | term ' .. input)
+        end
+    end)
+end, { desc = "run command in terminal"})
