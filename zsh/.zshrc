@@ -86,6 +86,17 @@ function y() {
     rm -f -- "$tmp"
 }
 
+# PATH
+add_path() {
+    if [[ ":$PATH:" != *":$1:"* ]]; then
+        export PATH="$1:$PATH"
+    fi
+}
+add_path "$HOME/bin"
+add_path "$HOME/.local/bin"
+
+# Other Exports
+
 export TERMINAL="alacritty"
 export EDITOR="nvim"
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
