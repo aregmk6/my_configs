@@ -1,6 +1,13 @@
+-- return {
+--   "Alligator/accent.vim",
+--   config = function()
+--     vim.cmd.colorscheme("accent")
+--   end,
+-- }
+
 return {
-  "Alligator/accent.vim",
-  config = function()
-    vim.cmd.colorscheme("accent")
-  end,
+  "blazkowolf/gruber-darker.nvim",
+   config = function()
+     vim.cmd.colorscheme("gruber-darker")
+   end,
 }

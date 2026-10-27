@@ -33,7 +33,6 @@ alias t='tmux'
 alias vi='nvim'
 alias nv='nvim .'
 alias preventsleep='systemd-inhibit --why="Manual sleep inhibit until turned off" --what=sleep sleep infinity'
-alias lisp='rlwrap sbcl'
 
 # Bluetooth
 alias btctl='bluetoothctl'
@@ -73,7 +72,7 @@ startsase() {
 }
 
 stopsase() {
-    sudo systemctl stop perimeter81helper.service
+    systemctl stop perimeter81helper.service
 }
 
 # Yazi (Official Zsh wrapper)
@@ -112,3 +111,5 @@ eval "$(fzf --zsh)"
 
 source /home/aregmk/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept
+
+source /home/aregmk/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

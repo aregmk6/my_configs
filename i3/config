@@ -225,8 +225,8 @@ bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t
 bindsym $mod+Ctrl+Shift+a exec --no-startup-id bash -ci "btair"
 bindsym $mod+Ctrl+Shift+d exec --no-startup-id bash -ci "btdis"
 
-## zoom in (boomer)
-bindsym $mod+Ctrl+z exec --no-startup-id "~/bin/boomer"
+## zoom in (zoomiz)
+bindsym $mod+Shift+z exec --no-startup-id "~/bin/zoomiz"
 
 # exec at startup
 exec_always --no-startup-id xinput set-prop "ELAN1201:00 04F3:3098 Touchpad" "libinput Tapping Enabled" 1
@@ -252,7 +252,7 @@ bindsym XF86AudioPrev  exec --no-startup-id playerctl previous
 
 # languages
 
-exec_always --no-startup-id setxkbmap -layout us,il -option grp:alt_shift_toggle
+exec_always --no-startup-id setxkbmap -layout us,il -option grp:alt_space_toggle
 
 # system display and colors
 
