@@ -40,6 +40,9 @@ alias btair='btctl connect C0:B2:2F:82:53:B4'
 alias btxm='btctl connect 88:C9:E8:07:59:ED'
 alias btdis='btctl disconnect'
 
+# Conda
+alias condactivate='eval "$(/home/aregmk/anaconda3/bin/conda shell.zsh hook)"'
+
 # Overrides
 find()  { command find "$@" 2>/dev/null; }
 efind() { command find "$@"; }
@@ -93,6 +96,7 @@ add_path() {
 }
 add_path "$HOME/bin"
 add_path "$HOME/.local/bin"
+add_path "$(go env GOPATH)/bin"
 
 # Other Exports
 

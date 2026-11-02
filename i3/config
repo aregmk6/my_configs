@@ -187,7 +187,10 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3blocks
+        position top
 }
+
+for_window [class=^.*] border pixel 2
 
 # ----- my stuff begin -----
 
@@ -210,6 +213,8 @@ bindsym $mod+c exec google-chrome-stable
 bindsym $mod+g exec google-chrome-stable gemini.google.com
 #tmux
 bindsym $mod+t exec --no-startup-id $term -e "tmux"
+#emacs
+bindsym $mod+Shift+Return exec --no-startup-id emacsclient -c -a ""
 
 # Screenshots
 bindsym Ctrl+Shift+Print exec --no-startup-id maim "/home/$USER/Pictures/screenshots/$(date).png"
