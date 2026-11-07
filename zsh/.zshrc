@@ -75,7 +75,7 @@ startsase() {
 }
 
 stopsase() {
-    systemctl stop perimeter81helper.service
+    'systemctl stop perimeter81helper.service'
 }
 
 # Yazi (Official Zsh wrapper)
